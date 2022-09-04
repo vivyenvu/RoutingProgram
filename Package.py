@@ -1,3 +1,4 @@
+# Creates class for package object
 class Package:
     def __init__(self, id, address, city, state, zipcode, deadline, weight, status):
         self.id = id
@@ -8,3 +9,4 @@ class Package:
         self.deadline = deadline
         self.weight = weight
         self.status = status
+

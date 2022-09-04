@@ -1,3 +1,4 @@
+# Creates class for Truck object
 class Truck:
     def __init__(self, name, maxPackages, speed, numPackages, mileage, currentAddress, departTime, currentTime):
         self.name = name
