@@ -24,4 +24,4 @@ def csv_hashmap(fileName):
             newPackage = Package(id, address, city, state, zipcode, deadline, weight, 'In hub')
 
             # Add package to hashmap
-            package_hashmap.add(id, newPackage)
+            package_hashmap.insert(id, newPackage)
