@@ -1,4 +1,4 @@
-class HashTable:
+class HashMap:
     def __init__(self):
         self.size = 10;
         self.map = [None] * self.size
