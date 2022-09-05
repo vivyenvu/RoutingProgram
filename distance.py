@@ -10,6 +10,7 @@ with open(filename, newline='') as csvf:
     for row in distanceCSV:
         distancesBtwn.append(row)
 
+# Create a dictionary with key: address index, and value: distances between that index and other address indexes
 for x in range(0, len(distancesBtwn)):
     distanceDict[x] = distancesBtwn[x]
 
