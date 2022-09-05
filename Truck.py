@@ -14,3 +14,6 @@ class Truck:
 
     def updateAddress(self, newAddress):
         self.currentAddress = newAddress
+
+    def addMiles(self, miles):
+        self.mileage = self.mileage + miles

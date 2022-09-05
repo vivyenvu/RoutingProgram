@@ -9,4 +9,13 @@ class Package:
         self.deadline = deadline
         self.weight = weight
         self.status = status
+        self.deliveredTime = None
 
+    def deliveredAt(self, time):
+        self.deliveredTime = time
+
+    def allOnRoute(self):
+        self.status = 'On route'
+
+    def deliveredStatus(self, time):
+        self.status = 'Delivered at' +time

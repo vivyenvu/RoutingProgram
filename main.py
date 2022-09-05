@@ -7,7 +7,7 @@ import datetime
 
 import Truck
 from address import addressIndex, getAddressIndex
-from distance import distanceCSV, distanceDict
+from distance import distanceCSV, distanceDict, distanceBetween
 from package_hashmap import package_hashmap
 
 
@@ -33,4 +33,4 @@ class Main:
     print('This is the dict')
     print(distanceDict)
 
-    print(getAddressIndex('2530 S 500 E'))
+    print(distanceBetween('3148 S 1100 W', '2010 W 500 S'))
