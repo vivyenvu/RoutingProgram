@@ -7,3 +7,7 @@ with open('Distance.csv') as csvf:
 
 def distance(a, b):
     distance = distanceCSV[a][b]
+    if distance == '':
+        distance = distanceCSV[b][a]
+
+    return float(distance)
