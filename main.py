@@ -33,3 +33,6 @@ class Main:
     print(distanceDict)
 
     print(distanceBetween('3148 S 1100 W', '2010 W 500 S'))
+    print(truck3.departTime)
+    truck3.updateTime(4)
+    print(truck3.currentTime)
