@@ -11,11 +11,13 @@ class Package:
         self.status = status
         self.deliveredTime = None
 
+    def deliveredStatus(self):
+        self.status = 'Delivered'
+
     def deliveredAt(self, time):
         self.deliveredTime = time
 
     def allOnRoute(self):
         self.status = 'On route'
 
-    def deliveredStatus(self, time):
-        self.status = 'Delivered'
+

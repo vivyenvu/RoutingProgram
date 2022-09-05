@@ -11,7 +11,7 @@ def csv_hashmap(fileName, hashName):
             tempList.append(entry)
 
         # Create a package object from each entry O(N)
-        for item in contents:
+        for item in tempList:
             id = int(item[0])
             address = item[1]
             city = item[2]

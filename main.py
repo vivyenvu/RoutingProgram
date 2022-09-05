@@ -27,6 +27,9 @@ class Main:
     package_hashmap = HashMap()
     csv_hashmap('Package.csv', package_hashmap)
 
+    thing = package_hashmap.lookup(5)
+    print(thing)
+
     print('Welcome to the start of the program \n')
     print(package_hashmap)
     print('Address[]')
