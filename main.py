@@ -6,11 +6,10 @@ import csv
 import datetime
 
 import Truck
+from address import addressIndex, getAddressIndex
 from distance import distanceCSV, distanceDict
 from package_hashmap import package_hashmap
 
-# with open('Address.csv') as csvf2:
-# addressCSV = csv.reader(csvf2)
 
 
 # Green: Deadline and group packages
@@ -29,7 +28,9 @@ truck3 = Truck.Truck([6, 9, 25, 28, 32, 26, 2, 33, 19, 22], '9:05')
 class Main:
     print('Welcome to the start of the program \n')
     print(package_hashmap)
-    print('This is the CSV')
-    print(distanceCSV)
+    print('Address[]')
+    print(addressIndex)
     print('This is the dict')
     print(distanceDict)
+
+    print(getAddressIndex('2530 S 500 E'))

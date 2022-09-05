@@ -7,8 +7,8 @@ filename = 'Distance.csv'
 # Populate list with distances in between two addresses
 with open(filename, newline='') as csvf:
     distanceCSV = csv.reader(csvf)
-    for row in distanceCSV:
-        distancesBtwn.append(row)
+    for entry in distanceCSV:
+        distancesBtwn.append(entry)
 
 # Create a dictionary with key: address index, and value: distances between that index and other address indexes
 for x in range(0, len(distancesBtwn)):
