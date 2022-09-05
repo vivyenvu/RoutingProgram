@@ -1,5 +1,7 @@
 import csv
 
+from address import getAddressIndex
+
 distancesBtwn = []
 distanceDict = {}
 filename = 'Distance.csv'
@@ -15,10 +17,11 @@ for x in range(0, len(distancesBtwn)):
     distanceDict[x] = distancesBtwn[x]
 
 
-
 def distanceBetween(address1, address2):
-    distance = distanceCSV[address1][address2]
+    a1 = getAddressIndex(address1)
+    a2 = getAddressIndex(address2)
+    distance = distanceDict[a1][a2]
     if distance == '':
-        distance = distanceCSV[address2][address1]
+        distance = distanceDict[a2][a1]
 
     return float(distance)
