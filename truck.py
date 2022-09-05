@@ -11,6 +11,7 @@ class Truck:
         self.currentAddress = '4001 South 700 East'
         self.departTime = departTime
         self.currentTime = departTime
+        self.route = []
 
     def updateAddress(self, newAddress):
         self.currentAddress = newAddress
@@ -22,4 +23,6 @@ class Truck:
     def addMiles(self, miles):
         self.mileage = self.mileage + miles
 
+    def setRoute(self, orderedRoute):
+        self.route = orderedRoute
 

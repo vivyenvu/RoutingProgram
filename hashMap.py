@@ -4,7 +4,8 @@ class HashMap:
         self.map = [None] * self.size
 
     def __get_hashindex(self, key):
-        return key % self.size
+        hashindex = int(key) % self.size
+        return int(hashindex)
 
     def insert(self, key, value):
         key_hash = self.__get_hashindex(key)

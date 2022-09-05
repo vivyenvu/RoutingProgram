@@ -7,7 +7,7 @@ distanceDict = {}
 filename = 'Distance.csv'
 
 # Populate list with distances in between two addresses
-with open(filename, newline='') as csvf:
+with open(filename, encoding='utf-8-sig') as csvf:
     distanceCSV = csv.reader(csvf)
     for entry in distanceCSV:
         distancesBtwn.append(entry)

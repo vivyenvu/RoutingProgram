@@ -2,12 +2,12 @@
 # Student ID: 009777954
 # Title: C950 Data Structures and Algorithms II Routing Project
 
-import csv
+
 import datetime
 
 import truck
-from address import addressIndex, getAddressIndex
-from distance import distanceCSV, distanceDict, distanceBetween
+from address import addressIndex
+from distance import distanceDict, distanceBetween
 from hashMap import HashMap
 from package_hashmap import csv_hashmap
 

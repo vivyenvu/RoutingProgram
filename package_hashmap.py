@@ -4,18 +4,21 @@ from package import Package
 
 # Get contents from CSV file, create packages from each row, and put it in the hashName HashMap O(N^2)
 def csv_hashmap(fileName, hashName):
-    with open(fileName) as csvf:
+    tempList = []
+    with open(fileName, encoding='utf-8-sig') as csvf:
         contents = csv.reader(csvf)
+        for entry in contents:
+            tempList.append(entry)
 
         # Create a package object from each entry O(N)
-        for row in contents:
-            id = row[0]
-            address = row[1]
-            city = row[2]
-            state = row[3]
-            zipcode = row[4]
-            deadline = row[5]
-            weight = row[6]
+        for item in contents:
+            id = int(item[0])
+            address = item[1]
+            city = item[2]
+            state = item[3]
+            zipcode = item[4]
+            deadline = item[5]
+            weight = item[6]
             newPackage = Package(id, address, city, state, zipcode, deadline, weight, 'In hub')
 
             # Add package to hashmap
