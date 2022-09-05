@@ -7,6 +7,7 @@ import datetime
 
 import truck
 from address import addressIndex
+from deliveryRoute import goOnRoute
 from distance import distanceDict, distanceBetween
 from hashMap import HashMap
 from package_hashmap import csv_hashmap
@@ -27,6 +28,7 @@ class Main:
     package_hashmap = HashMap()
     csv_hashmap('Package.csv', package_hashmap)
 
+    goOnRoute(truck1)
     thing = package_hashmap.lookup(5)
     print(thing)
 
