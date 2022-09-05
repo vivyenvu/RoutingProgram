@@ -18,14 +18,21 @@ def goOnRoute(truck):
     closestAddress = package_hashmap.lookup(packageNumbers[0]).address
     print(closestAddress)
     while packagesRemaining > 0:
-        for i in packageNumbers:
-
-            addressTemp = package_hashmap.lookup(packageNumbers)[1]
-            if distanceBetween(address1, addressTemp) < distanceBetween(address1, shortestDistance):
-                shortestDistance = addressTemp
+        for i in range(len(packageNumbers)):
+            addressTemp = package_hashmap.lookup(packageNumbers[i]).address
+            if distanceBetween(address1, addressTemp) < distanceBetween(address1, closestAddress):
+                address2 = addressTemp
+                nextPackage = package_hashmap.lookup(packageNumbers[i])
                 removeValue = i
 
-        packageNumbers.remove(removeValue)
         packagesRemaining -= 1
+        packageNumbers.remove(removeValue)
+        truck.updateTime(distanceBetween(address1, address2))
+        truck.addMiles(distanceBetween(address1, address2))
+        truck.updateAddress(address2)
+        package.deliveredAt(truck.currentTime)
+        package.deliveredStatus()
 
-        truck.setRoute(orderedRoute) # my not be necessary
+
+
+    #truck.setRoute(orderedRoute) # my not be necessary
