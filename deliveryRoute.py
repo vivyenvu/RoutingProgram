@@ -30,8 +30,8 @@ def goOnRoute(truck):
         truck.updateTime(distanceBetween(address1, address2))
         truck.addMiles(distanceBetween(address1, address2))
         truck.updateAddress(address2)
-        package.deliveredAt(truck.currentTime)
-        package.deliveredStatus()
+        package_hashmap.lookup(packageNumbers[removeValue]).deliveredAt(truck.currentTime)
+        package_hashmap.lookup(packageNumbers[removeValue]).deliveredStatus()
 
 
 
