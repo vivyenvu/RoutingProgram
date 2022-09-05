@@ -1,6 +1,6 @@
 import csv
-from HashMap import HashMap
-from Package import Package
+from hashMap import HashMap
+from package import Package
 
 # Create new hashmap to fill with package objects from Package.csv
 package_hashmap = HashMap()

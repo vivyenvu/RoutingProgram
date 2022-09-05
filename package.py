@@ -18,4 +18,4 @@ class Package:
         self.status = 'On route'
 
     def deliveredStatus(self, time):
-        self.status = 'Delivered at' +time
+        self.status = 'Delivered'
