@@ -12,3 +12,5 @@ class Truck:
         self.departTime = departTime
         self.currentTime = datetime.timedelta()
 
+    def updateAddress(self, newAddress):
+        self.currentAddress = newAddress

@@ -1,14 +1,23 @@
 import csv
 
+distancesBtwn = []
+distanceDict = {}
+filename = 'Distance.csv'
 
-with open('Distance.csv') as csvf:
+# Populate list with distances in between two addresses
+with open(filename, newline='') as csvf:
     distanceCSV = csv.reader(csvf)
-    distanceCSV = list(distanceCSV)
-    # The csv. reader method returns a reader object which iterates over lines in the given CSV file. The numbers. csv file contains numbers
+    for row in distanceCSV:
+        distancesBtwn.append(row)
 
-def distance(a, b):
-    distance = distanceCSV[a][b]
+for x in range(0, len(distancesBtwn)):
+    distanceDict[x] = distancesBtwn[x]
+
+
+
+def distanceBetween(address1, address2):
+    distance = distanceCSV[address1][address2]
     if distance == '':
-        distance = distanceCSV[b][a]
+        distance = distanceCSV[address2][address1]
 
     return float(distance)

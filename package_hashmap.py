@@ -13,14 +13,14 @@ def csv_hashmap(fileName):
         contents = csv.reader(csvf)
 
         # Create a package object from each entry O(N)
-        for entry in contents:
-            id = entry[0]
-            address = entry[1]
-            city = entry[2]
-            state = entry[3]
-            zipcode = entry[4]
-            deadline = entry[5]
-            weight = entry[6]
+        for row in contents:
+            id = row[0]
+            address = row[1]
+            city = row[2]
+            state = row[3]
+            zipcode = row[4]
+            deadline = row[5]
+            weight = row[6]
             newPackage = Package(id, address, city, state, zipcode, deadline, weight, 'In hub')
 
             # Add package to hashmap
