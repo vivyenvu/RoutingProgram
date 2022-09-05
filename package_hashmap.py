@@ -1,14 +1,9 @@
 import csv
-from hashMap import HashMap
 from package import Package
 
-# Create new hashmap to fill with package objects from Package.csv
-package_hashmap = HashMap()
-fileName = 'Package.csv'
 
-
-# Get contents from CSV file O(N^2)
-def csv_hashmap(fileName):
+# Get contents from CSV file, create packages from each row, and put it in the hashName HashMap O(N^2)
+def csv_hashmap(fileName, hashName):
     with open(fileName) as csvf:
         contents = csv.reader(csvf)
 
@@ -24,4 +19,4 @@ def csv_hashmap(fileName):
             newPackage = Package(id, address, city, state, zipcode, deadline, weight, 'In hub')
 
             # Add package to hashmap
-            package_hashmap.insert(id, newPackage)
+            hashName.insert(id, newPackage)

@@ -8,9 +8,8 @@ import datetime
 import truck
 from address import addressIndex, getAddressIndex
 from distance import distanceCSV, distanceDict, distanceBetween
-from package_hashmap import package_hashmap
-
-
+from hashMap import HashMap
+from package_hashmap import csv_hashmap
 
 # Green: Deadline and group packages
 truck1 = truck.Truck([1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40, 21, 4, 17], datetime.timedelta(hours=8))
@@ -25,6 +24,9 @@ truck3 = truck.Truck([6, 9, 25, 28, 32, 26, 2, 33, 19, 22], datetime.timedelta(h
 
 
 class Main:
+    package_hashmap = HashMap()
+    csv_hashmap('Package.csv', package_hashmap)
+
     print('Welcome to the start of the program \n')
     print(package_hashmap)
     print('Address[]')
@@ -34,5 +36,5 @@ class Main:
 
     print(distanceBetween('3148 S 1100 W', '2010 W 500 S'))
     print(truck3.departTime)
-    truck3.updateTime(4)
+    truck3.updateTime(4.1)
     print(truck3.currentTime)
