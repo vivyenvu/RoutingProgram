@@ -86,10 +86,17 @@ while True:
         # After truck1's driver returns to the hub, he will take truck2 and deliver those packages
         goEnRoute(truck2, package_hashmap)
 
-        timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
-        timeParts = timeInput.split(':')
-        usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]), seconds=int(timeParts[2]))
-        break
+        try:
+            timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
+            timeParts = timeInput.split(':')
+            usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]), seconds=int(timeParts[2]))
+            break
+        except ValueError:
+            print('Invalid input. Restart program and try again. ')
+            break
+        except IndexError:
+            print('Invalid input. Restart program and try again. ')
+            break
 
     elif isValid == 3:
         print('exiting')
