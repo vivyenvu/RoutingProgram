@@ -1,4 +1,6 @@
 # Nearest neighbor algorithm
+import datetime
+
 from distance import distanceBetween
 
 
@@ -35,6 +37,11 @@ def goOnRoute(truck, hashmap):
         address1 = address2
         packagesRemaining -= 1
         currentDistance = 25
+        # REMOVE THIS IS YOU FIND ANOTHER WAY TO ACCOUNT FOR THE CHANGE IN PACKAGE9'S ADDRESS
+        if truck.currentTime >= datetime.timedelta(hours=10, minutes=20):
+            package9 = hashmap.lookup(9)
+            package9.address = '410 S State St'
+
         # print("TRUCK'S CURRENT TIME")
         # print(truck.currentTime)
         # print(truck.mileage)
