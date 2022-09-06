@@ -17,7 +17,7 @@ class Package:
     def deliveredAt(self, time):
         self.deliveredTime = time
 
-    def allOnRoute(self):
+    def onRoute(self):
         self.status = 'On route'
 
 
