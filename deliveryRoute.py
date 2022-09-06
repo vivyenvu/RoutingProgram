@@ -6,13 +6,13 @@ from distance import distanceBetween
 # This method determines the truck's delivery route based on the nearest neighbor algorithm.
 # When the next closest package is determined, the time and miles to that next address is added
 # to the truck and the package
-def goOnRoute(truck, hashmap):
-    # Updates status of all package in truck to "On route"
+def goEnRoute(truck, hashmap):
+    # Updates status of all package in truck to "En route"
     # Time complexity = O(n)
     packageNumbers = truck.myPackages  # List of package numbers
     for num in packageNumbers:
         package = hashmap.lookup(num)
-        package.onRoute()
+        package.enRoute()
 
     # This is the nearest neighbor algorithm where every package associated with the id in packageNumbers
     # will be compared to find which address is the closest to the current address. Once the closest

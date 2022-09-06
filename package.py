@@ -22,9 +22,9 @@ class Package:
     def deliveredAt(self, time):
         self.deliveredTime = time
 
-    # Updates package's status to 'On route'
+    # Updates package's status to 'En route'
     # Time complexity = O(1)
-    def onRoute(self):
-        self.status = 'On route'
+    def enRoute(self):
+        self.status = 'En route'
 
 

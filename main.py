@@ -1,13 +1,12 @@
 # Author: Vivyen Vu
 # Student ID: 009777954
-# Title: C950 Data Structures and Algorithms II Routing Project
 
 
 import datetime
 
 import truck
 from address import addressIndex
-from deliveryRoute import goOnRoute
+from deliveryRoute import goEnRoute
 from distance import distanceDict, distanceBetween
 from hashMap import HashMap
 from package_hashmap import csv_hashmap
@@ -33,10 +32,12 @@ class Main:
     #    package9 = package_hashmap.lookup(9)
     #    package9.address = '410 S State St'
 
-    goOnRoute(truck1, package_hashmap)
-    goOnRoute(truck3, package_hashmap)
+    print("ADDRESS INDEX")
+    print(addressIndex)
+    goEnRoute(truck1, package_hashmap)
+    goEnRoute(truck3, package_hashmap)
     # After truck1's driver returns to the hub, he will take truck2 and deliver those packages
-    goOnRoute(truck2, package_hashmap)
+    goEnRoute(truck2, package_hashmap)
     print(truck1.currentTime)
     print(truck2.currentTime)
     print(truck3.currentTime)
