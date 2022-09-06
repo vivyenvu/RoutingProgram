@@ -80,6 +80,10 @@ while True:
         print('All packages were done being delivered by: ' + str(endTime))
         break
 
+    elif isValid == 3:
+        print('You are exiting the application. ')
+        exit()
+
     elif isValid == 2:
         goEnRoute(truck1, package_hashmap)
         goEnRoute(truck3, package_hashmap)
@@ -93,11 +97,11 @@ while True:
             break
         except ValueError:
             print('Invalid input. Restart program and try again. ')
-            break
+            exit()
         except IndexError:
             print('Invalid input. Restart program and try again. ')
-            break
+            exit()
 
-    elif isValid == 3:
-        print('exiting')
-        exit()
+print('did nothing after entering time')
+
+
