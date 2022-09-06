@@ -50,7 +50,7 @@ while True:
     elif isValid == 1:
         goEnRoute(truck1, package_hashmap)
         goEnRoute(truck3, package_hashmap)
-        # After truck1's driver returns to the hub, he will take truck2 and deliver those packages
+        # After truck1's driver returns to the hub at 9:57:40, he will take truck2 and deliver those packages at 10:00
         goEnRoute(truck2, package_hashmap)
 
         for i in range(1, 41):
@@ -70,10 +70,25 @@ while True:
         print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
         print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
         print('Total mileage: ' + str(round (truck1.mileage + truck2.mileage + truck3.mileage, 1)))
+
+        if truck1.currentTime > truck2.currentTime and truck1.currentTime > truck3.currentTime:
+            endTime = truck1.currentTime
+        elif truck2.currentTime > truck1.currentTime and truck2.currentTime > truck3.currentTime:
+            endTime = truck2.currentTime
+        elif truck3.currentTime > truck1.currentTime and truck3.currentTime > truck1.currentTime:
+            endTime = truck1.currentTime
+        print('All packages were done being delivered by: ' + str(endTime))
         break
 
     elif isValid == 2:
-        print('choice 2')
+        goEnRoute(truck1, package_hashmap)
+        goEnRoute(truck3, package_hashmap)
+        # After truck1's driver returns to the hub, he will take truck2 and deliver those packages
+        goEnRoute(truck2, package_hashmap)
+
+        timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
+        timeParts = timeInput.split(':')
+        usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]), seconds=int(timeParts[2]))
         break
 
     elif isValid == 3:
