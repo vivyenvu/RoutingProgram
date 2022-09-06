@@ -17,7 +17,7 @@ truck1 = truck.Truck([1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40, 21, 4, 
 
 # Yellow: Must be on truck 2, all EOD
 truck2 = truck.Truck([3, 18, 36, 38, 5, 8, 27, 35, 7, 39, 11, 24, 23, 10],
-                     datetime.timedelta(hours=11))  # not sure when depart time should be
+                     datetime.timedelta(hours=10))  # not sure when depart time should be
 
 # Blue: Delayed packages or EOD, leave after 9:05
 # 25 needs to be delivered by 10:30am
@@ -31,6 +31,7 @@ class Main:
 
     goOnRoute(truck1, package_hashmap)
     goOnRoute(truck3, package_hashmap)
+    # After truck1's driver returns to the hub, he will take truck2 and deliver those packages
     goOnRoute(truck2, package_hashmap)
     print(truck1.currentTime)
     print(truck2.currentTime)

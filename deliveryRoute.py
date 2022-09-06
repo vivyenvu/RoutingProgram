@@ -3,7 +3,7 @@ from distance import distanceBetween
 
 
 def goOnRoute(truck, hashmap):
-    # UPDATE ALL PACKAGE STATUS TO ON ROUTE
+    # Updates all package status in truck to "On route"
     packageNumbers = truck.myPackages  # List of package numbers
     for num in packageNumbers:
         package = hashmap.lookup(num)
@@ -39,4 +39,8 @@ def goOnRoute(truck, hashmap):
         # print(truck.currentTime)
         # print(truck.mileage)
 
-        # DO I NEED TO ADD DISTANCE FROM LAST ADDRESS BACK TO HUB TO THE TRUCK'S MILEAGE
+    # Add miles and time from the truck's last address back to the hub
+    truck.updateTime(distanceBetween(truck.currentAddress, '4001 South 700 East'))
+    truck.addMiles(distanceBetween(truck.currentAddress, '4001 South 700 East'))
+    truck.currentAddress = '4001 South 700 East'
+
