@@ -28,7 +28,11 @@ class Main:
     package_hashmap = HashMap()
     csv_hashmap('Package.csv', package_hashmap)
 
-    goOnRoute(truck1)
+    goOnRoute(truck1, package_hashmap)
+    goOnRoute(truck3, package_hashmap)
+    goOnRoute(truck2, package_hashmap)
+    print ("Total mileage")
+    print(truck1.mileage)
     thing = package_hashmap.lookup(5)
     print(thing)
 

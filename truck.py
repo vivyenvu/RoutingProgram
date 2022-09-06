@@ -21,7 +21,7 @@ class Truck:
         self.currentTime = self.currentTime + elapsedTime
 
     def addMiles(self, miles):
-        self.mileage = self.mileage + miles
+        self.mileage += miles
 
     def setRoute(self, orderedRoute):
         self.route = orderedRoute
