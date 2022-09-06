@@ -9,6 +9,7 @@ from deliveryRoute import goEnRoute
 from hashMap import HashMap
 from package_hashmap import csv_hashmap
 
+usableTime = None
 # Green: Packages that have a specific deadline or must be grouped with other packages
 truck1 = truck.Truck([1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40, 21, 4, 17], datetime.timedelta(hours=8))
 
@@ -85,10 +86,10 @@ while True:
         exit()
 
     elif isValid == 2:
-        goEnRoute(truck1, package_hashmap)
-        goEnRoute(truck3, package_hashmap)
-        # After truck1's driver returns to the hub, he will take truck2 and deliver those packages
-        goEnRoute(truck2, package_hashmap)
+        # goEnRoute(truck1, package_hashmap)
+        # goEnRoute(truck3, package_hashmap)
+        # After truck1's driver returns to the hub at 9:57:40, he will take truck2 and deliver those packages at 10:00
+        # goEnRoute(truck2, package_hashmap)
 
         try:
             timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
@@ -102,6 +103,40 @@ while True:
             print('Invalid input. Restart program and try again. ')
             exit()
 
-print('did nothing after entering time')
+packageNumbers = []
+for nums in truck1.myPackages:
+    packageNumbers.append(nums)
+depart = truck1.departTime
+goEnRoute(truck1, package_hashmap)
+
+for num in packageNumbers:
+    package = package_hashmap.lookup(num)
+    if package.deliveredTime < usableTime:
+        pass
+    elif depart < usableTime:
+        package.enRoute()
+        package.deliveredTime = None
+    elif usableTime < depart:
+        package.inHub()
+        package.deliveredTime = None
+    id = str(num)
+    address = str(package.address)
+    city = str(package.city)
+    state = str(package.state)
+    zipcode = str(package.zipcode)
+    deadline = str(package.deadline)
+    weight = str(package.weight)
+    status = str(package.status)
+    time = str(package.deliveredTime)
+    if package.deliveredTime is None:
+        print(id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status)
+    else:
+        print(id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
+
+
+print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
+print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
+print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
+print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
 
 

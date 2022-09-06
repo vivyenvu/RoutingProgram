@@ -13,7 +13,6 @@ class Truck:
         self.currentAddress = '4001 South 700 East'
         self.departTime = departTime
         self.currentTime = departTime
-        self.route = []
 
     # Sets truck's current address to a new address
     def updateAddress(self, newAddress):

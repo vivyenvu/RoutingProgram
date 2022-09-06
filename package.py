@@ -9,7 +9,7 @@ class Package:
         self.zipcode = zipcode
         self.deadline = deadline
         self.weight = weight
-        self.status = status
+        self.status = 'In hub'
         self.deliveredTime = None
 
     # Updates package's status to 'Delivered'
@@ -27,4 +27,6 @@ class Package:
     def enRoute(self):
         self.status = 'En route'
 
+    def inHub(self):
+        self.status = 'In hub'
 
