@@ -34,16 +34,30 @@ class Main:
     print('1 - Show status of all packages at the end of the day')
     print('2 - Show status of all packages at a given time')
     print('3 - Exit application')
-    menuInput = input('Please enter a number option from the menu above. ')
 
+
+while True:
     try:
-        isValid = int(menuInput)
+        isValid = int(input('Please enter a number option from the menu above. '))
     except ValueError:
-        menuInput = input('Invalid input. Please enter a valid number. ')
+        print('Invalid input. Please enter a valid number. ')
+        continue
 
-    if isValid !=1 and isValid !=2 and isValid !=3:
-        menuInput = input('Invalid input. Please enter a valid number. ')
-    else:
+    if isValid != 1 and isValid != 2 and isValid != 3:
+        print('Invalid input. Please enter a valid number. ')
+        continue
+
+    elif isValid == 1:
+        print('choice 1')
+        break
+
+    elif isValid == 2:
+        print('choice 2')
+        break
+
+    elif isValid == 3:
+        print('exiting')
+        exit()
 
         goEnRoute(truck1, package_hashmap)
         goEnRoute(truck3, package_hashmap)
@@ -53,7 +67,7 @@ class Main:
         print('Truck 1 mileage: ' + str(truck1.mileage))
         print('Truck 2 mileage: ' + str(truck2.mileage))
         print('Truck 3 mileage: ' + str(truck3.mileage))
-        print('Total mileage: '+str(truck1.mileage + truck2.mileage + truck3.mileage))
+        print('Total mileage: ' + str(truck1.mileage + truck2.mileage + truck3.mileage))
 
         # print(package_hashmap.lookup(5))
         for i in range(1, 41):
