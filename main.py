@@ -4,11 +4,10 @@
 
 import datetime
 import truck
-from address import addressIndex
 from deliveryRoute import goEnRoute
 from hashMap import HashMap
 from package_hashmap import csv_hashmap
-from time import packageAtTime, mileageAtTime
+from timeInfo import packageAtTime, mileageAtTime
 
 usableTime = None
 # Green: Packages that have a specific deadline or must be grouped with other packages
@@ -96,7 +95,20 @@ while True:
             timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
             timeParts = timeInput.split(':')
             usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]), seconds=int(timeParts[2]))
-            break
+
+            packageAtTime(truck1, usableTime, package_hashmap)
+            packageAtTime(truck2, usableTime, package_hashmap)
+            packageAtTime(truck3, usableTime, package_hashmap)
+
+            mile1 = mileageAtTime(truck1, usableTime, package_hashmap)
+            mile2 = mileageAtTime(truck2, usableTime, package_hashmap)
+            mile3 = mileageAtTime(truck3, usableTime, package_hashmap)
+
+            print('Truck 1 mileage: ' + str(round(mile1, 1)))
+            print('Truck 2 mileage: ' + str(round(mile2, 1)))
+            print('Truck 3 mileage: ' + str(round(mile3, 1)))
+            print('Total mileage: ' + str(round(mile1 + mile2 + mile3, 1)))
+            # break
         except ValueError:
             print('Invalid input. Restart program and try again. ')
             exit()
@@ -104,13 +116,7 @@ while True:
             print('Invalid input. Restart program and try again. ')
             exit()
 
-packageAtTime(truck1, usableTime)
-packageAtTime(truck2, usableTime)
-packageAtTime(truck2, usableTime)
 
-mile1 = mileageAtTime(truck1, usableTime)
-mile2 = mileageAtTime(truck2, usableTime)
-mile3 = mileageAtTime(truck3, usableTime)
 
 
 

@@ -1,10 +1,9 @@
 import datetime
 
 from deliveryRoute import goEnRoute
-from main import package_hashmap
 
 
-def packageAtTime(truck, usableTime):
+def packageAtTime(truck, usableTime, package_hashmap):
     packageNumbers = []
     for nums in truck.myPackages:
         packageNumbers.append(nums)
@@ -18,7 +17,7 @@ def packageAtTime(truck, usableTime):
         elif depart < usableTime:
             package.enRoute()
             package.deliveredTime = None
-        elif usableTime < depart:
+        elif usableTime <= depart:
             package.inHub()
             package.deliveredTime = None
         id = str(num)
@@ -38,7 +37,7 @@ def packageAtTime(truck, usableTime):
                 id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
 
 
-def mileageAtTime(truck, usableTime):
+def mileageAtTime(truck, usableTime, package_hashmap):
     goEnRoute(truck, package_hashmap)
     timedMiles = 0.0
     if truck.currentTime < usableTime:
@@ -51,9 +50,3 @@ def mileageAtTime(truck, usableTime):
         timedMiles = timeDifInMins * 0.3
 
     return timedMiles
-    # print('Truck1 has mileage: ' + str(round(timedMiles, 1)))
-
-    # print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
-    # print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
-    # print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
-    # print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
