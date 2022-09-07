@@ -133,10 +133,15 @@ for num in packageNumbers:
     else:
         print(id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
 
+miles = 0
+timeDifference = usableTime - truck1.departTime
+if timeDifference > datetime.timedelta(seconds=0):
+    miles = timeDifference * 0.3
+print('Truck1 has mileage: '+str(miles))
 
-    print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
-    print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
-    print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
-    print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
+print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
+print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
+print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
+print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
 
 
