@@ -8,6 +8,7 @@ from address import addressIndex
 from deliveryRoute import goEnRoute
 from hashMap import HashMap
 from package_hashmap import csv_hashmap
+from time import packageAtTime, mileageAtTime
 
 usableTime = None
 # Green: Packages that have a specific deadline or must be grouped with other packages
@@ -103,51 +104,13 @@ while True:
             print('Invalid input. Restart program and try again. ')
             exit()
 
-packageNumbers = []
-for nums in truck1.myPackages:
-    packageNumbers.append(nums)
-depart = truck1.departTime
-goEnRoute(truck1, package_hashmap)
+packageAtTime(truck1, usableTime)
+packageAtTime(truck2, usableTime)
+packageAtTime(truck2, usableTime)
 
-for num in packageNumbers:
-    package = package_hashmap.lookup(num)
-    if package.deliveredTime < usableTime:
-        pass
-    elif depart < usableTime:
-        package.enRoute()
-        package.deliveredTime = None
-    elif usableTime < depart:
-        package.inHub()
-        package.deliveredTime = None
-    id = str(num)
-    address = str(package.address)
-    city = str(package.city)
-    state = str(package.state)
-    zipcode = str(package.zipcode)
-    deadline = str(package.deadline)
-    weight = str(package.weight)
-    status = str(package.status)
-    time = str(package.deliveredTime)
-    if package.deliveredTime is None:
-        print(id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status)
-    else:
-        print(id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
+mile1 = mileageAtTime(truck1, usableTime)
+mile2 = mileageAtTime(truck2, usableTime)
+mile3 = mileageAtTime(truck3, usableTime)
 
-timedMiles = 0.0
-if truck1.currentTime < usableTime:
-    timedMiles = truck1.mileage
-elif usableTime < truck1.departTime:
-    timedMiles = 0.0
-elif truck1.departTime < usableTime:
-    timeDif = usableTime - truck1.departTime
-    timeDifInMins = timeDif/datetime.timedelta(minutes=1)
-    timedMiles = timeDifInMins * 0.3
-
-print('Truck1 has mileage: '+str(round(timedMiles, 1)))
-
-print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
-print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
-print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
-print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
 
 
