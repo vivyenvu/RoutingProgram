@@ -133,10 +133,16 @@ for num in packageNumbers:
     else:
         print(id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
 
-miles = 0
-timeDifference = usableTime - truck1.departTime
-if timeDifference > datetime.timedelta(seconds=0):
-    miles = timeDifference * 0.3
+timedMiles = 0
+if truck1.currentTime < usableTime:
+    timedMiles = truck1.mileage
+elif usableTime < truck1.departTime:
+    timedMiles = 0
+elif truck1.departTime < usableTime:
+    timeDif = usableTime - truck1.departTime
+    timeDifInMins = timeDif/datetime.timedelta(minutes=1)
+    timedMiles = timeDifInMins * 0.3
+
 print('Truck1 has mileage: '+str(miles))
 
 print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
