@@ -29,6 +29,8 @@ def goEnRoute(truck, hashmap):
         if truck.currentTime >= datetime.timedelta(hours=10, minutes=20):
             package9 = hashmap.lookup(9)
             package9.address = '410 S State St'
+            package9.zipcode = '84111'
+
         for num in packageNumbers:
             addressTemp = hashmap.lookup(num).address
             tempDistance = distanceBetween(address1, addressTemp)
