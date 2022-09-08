@@ -30,6 +30,4 @@ class Package:
     def inHub(self):
         self.status = 'In hub'
 
-    def newAddress(self, newAddress):
-        self.address = newAddress
 

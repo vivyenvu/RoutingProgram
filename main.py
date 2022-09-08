@@ -103,6 +103,7 @@ while True:
             print('Truck 2 mileage: ' + str(round(mile2, 1)))
             print('Truck 3 mileage: ' + str(round(mile3, 1)))
             print('Total mileage: ' + str(round(mile1 + mile2 + mile3, 1)))
+            exit()
         except ValueError:
             print('Invalid input. Restart program and try again. ')
             exit()
