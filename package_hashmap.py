@@ -19,7 +19,7 @@ def csv_hashmap(fileName, hashName):
             zipcode = item[4]
             deadline = item[5]
             weight = item[6]
-            newPackage = Package(id, address, city, state, zipcode, deadline, weight, 'In hub')
+            newPackage = Package(id, address, city, state, zipcode, deadline, weight)
 
             # Add package to hashmap
             hashName.insert(id, newPackage)
