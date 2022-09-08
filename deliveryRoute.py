@@ -24,6 +24,12 @@ def goEnRoute(truck, hashmap):
     packagesRemaining = len(packageNumbers)
     while packagesRemaining > 0:
         removeThis = packageNumbers[0]
+        # REMOVE THIS IS YOU FIND ANOTHER WAY TO ACCOUNT FOR THE CHANGE IN PACKAGE9'S ADDRESSXX
+        # This if-statement is to account for package 9's change in address at 10:20am
+        # Time complexity = O(1)
+        if truck.currentTime >= datetime.timedelta(hours=10, minutes=20):
+            package9 = hashmap.lookup(9)
+            package9.newAddress('410 S State St')
         for num in packageNumbers:
             addressTemp = hashmap.lookup(num).address
             tempDistance = distanceBetween(address1, addressTemp)
@@ -42,12 +48,6 @@ def goEnRoute(truck, hashmap):
         address1 = address2
         packagesRemaining -= 1
         currentDistance = 25
-        # REMOVE THIS IS YOU FIND ANOTHER WAY TO ACCOUNT FOR THE CHANGE IN PACKAGE9'S ADDRESSXX
-        # This if-statement is to account for package 9's change in address at 10:20am
-        # Time complexity = O(1)
-        if truck.currentTime >= datetime.timedelta(hours=10, minutes=20):
-            package9 = hashmap.lookup(9)
-            package9.address = '410 S State St'
 
     # Add miles and time from the truck's last address back to the hub
     truck.updateTime(distanceBetween(truck.currentAddress, '4001 South 700 East'))

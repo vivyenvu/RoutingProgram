@@ -14,13 +14,13 @@ usableTime = None
 truck1 = truck.Truck([1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40, 21, 4, 17], datetime.timedelta(hours=8))
 
 # Yellow: Packages that must be on truck 2. All of their deadlines are EOD
-truck2 = truck.Truck([3, 18, 36, 38, 5, 8, 27, 35, 7, 39, 11, 24, 23, 10],
+truck2 = truck.Truck([3, 18, 36, 38, 5, 8, 27, 35, 7, 39, 11, 24, 23, 10, 9],
                      datetime.timedelta(hours=10))  # Depart after truck1's driver returns to the hub
 
 # Blue: Delayed packages or have deadline of EOD. This truck must leave after 9:05
 # 25 needs to be delivered by 10:30am
 # 9 has wrong address listed until 10:20am  410 S State St.
-truck3 = truck.Truck([6, 9, 25, 28, 32, 26, 2, 33, 12, 22], datetime.timedelta(hours=9, minutes=5))
+truck3 = truck.Truck([6, 25, 28, 32, 26, 2, 33, 12, 22], datetime.timedelta(hours=9, minutes=5))
 
 package_hashmap = HashMap()
 csv_hashmap('Package.csv', package_hashmap)
@@ -86,11 +86,6 @@ while True:
         exit()
 
     elif isValid == 2:
-        # goEnRoute(truck1, package_hashmap)
-        # goEnRoute(truck3, package_hashmap)
-        # After truck1's driver returns to the hub at 9:57:40, he will take truck2 and deliver those packages at 10:00
-        # goEnRoute(truck2, package_hashmap)
-
         try:
             timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
             timeParts = timeInput.split(':')
@@ -108,7 +103,6 @@ while True:
             print('Truck 2 mileage: ' + str(round(mile2, 1)))
             print('Truck 3 mileage: ' + str(round(mile3, 1)))
             print('Total mileage: ' + str(round(mile1 + mile2 + mile3, 1)))
-            # break
         except ValueError:
             print('Invalid input. Restart program and try again. ')
             exit()
