@@ -10,7 +10,6 @@ class HashMap:
     def insert(self, key, value):
         key_hash = self.__get_hashindex(key)
         key_value = [key, value]
-
         if self.map[key_hash] is None:
             self.map[key_hash] = list([key_value])
             return True
@@ -25,7 +24,6 @@ class HashMap:
 
     def remove(self, key):
         key_hash = self.__get_hashindex(key)
-
         if self.map[key_hash] is None:
             return False
         for i in range (0, len(self.map[key_hash])):
