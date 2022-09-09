@@ -2,6 +2,8 @@
 import datetime
 
 
+# Time complexity = O(1)
+# Space complexity = O(1)
 class Truck:
     # Constructor for Truck where maxPackages, speed, mileage, and currentAddress are preset according to
     # project details

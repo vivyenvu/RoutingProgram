@@ -6,6 +6,10 @@ distancesBtwn = []
 distanceDict = {}
 filename = 'Distance.csv'
 
+# Overall:
+# Time complexity = O(n)
+# Space complexity = O(1)
+
 # Populate list with distances in between two addresses
 # Time complexity = O(n)
 with open(filename, encoding='utf-8-sig') as csvf:

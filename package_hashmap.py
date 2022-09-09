@@ -2,15 +2,22 @@ import csv
 from package import Package
 
 
-# Get contents from CSV file, create packages from each row, and put it in the hashName HashMap O(N^2)
+# Get contents from CSV file, create packages from each row, and put it in the hashName HashMap
+# Time complexity = O(n)
+# Space complexity = O(1)
 def csv_hashmap(fileName, hashName):
+    # Add each entry in the CSV file into a List
+    # Time complexity = O(n)
+    # Space complexity = O(1)
     tempList = []
     with open(fileName, encoding='utf-8-sig') as csvf:
         contents = csv.reader(csvf)
         for entry in contents:
             tempList.append(entry)
 
-        # Create a package object from each entry O(N)
+        # Create a package object from each entry
+        # Time complexity = O(n)
+        # Space complexity = O(1)
         for item in tempList:
             id = int(item[0])
             address = item[1]

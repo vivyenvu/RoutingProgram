@@ -1,4 +1,6 @@
 # Creates class for package object
+# Time complexity = O(1)
+# Space complexity = O(1)
 class Package:
     # Constructor where deliveredTime is None, but all other fields are inputted when this is called
     def __init__(self, id, address, city, state, zipcode, deadline, weight):

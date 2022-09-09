@@ -5,6 +5,7 @@ addressIndex = []
 
 # Populate list with index and associated address from Address.csv
 # Time complexity = O(n)
+# Space complexity = O(1)
 with open('Address.csv', encoding='utf-8-sig') as csvf:
     addressCSV = csv.reader(csvf)
     for entry in addressCSV:

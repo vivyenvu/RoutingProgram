@@ -6,6 +6,8 @@ from distance import distanceBetween
 # This method determines the truck's delivery route based on the nearest neighbor algorithm.
 # When the next closest package is determined, the time and miles to that next address is added
 # to the truck and the package
+# Time complexity = O(n^2)
+# Space complexity = O(1)
 def goEnRoute(truck, hashmap):
     # Updates status of all package in truck to "En route"
     # Time complexity = O(n)

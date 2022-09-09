@@ -4,6 +4,8 @@ from deliveryRoute import goEnRoute
 
 
 # This method prints out package information at a user given time
+# Time complexity = O(n)
+# Space complexity = O(1)
 def packageAtTime(truck, usableTime, package_hashmap):
     # Fill list packageNumbers with the id of packages in this truck
     packageNumbers = []
@@ -12,6 +14,8 @@ def packageAtTime(truck, usableTime, package_hashmap):
     depart = truck.departTime
 
     # Deliver all packages in this truck
+    # Time complexity = O(n^2)
+    # Space complexity = O(1)
     goEnRoute(truck, package_hashmap)
 
     # Update information of all packages according to the user given time
@@ -59,13 +63,19 @@ def packageAtTime(truck, usableTime, package_hashmap):
 
 
 # This method returns truck mileage at a user given time
+# Time complexity = O(n)
+# Space complexity = O(n)
 def mileageAtTime(truck, usableTime, package_hashmap):
     # The truck will deliver all packages
+    # Time complexity = O(n)
+    # Space complexity = O(n)
     goEnRoute(truck, package_hashmap)
     timedMiles = 0.0
 
     # If user asks for time after truck has finished delivering all packages, give the total amount of miles used
     # to deliver all packages
+    # Time complexity = O(1)
+    # Space complexity = O(1)
     if truck.currentTime < usableTime:
         timedMiles = truck.mileage
 
