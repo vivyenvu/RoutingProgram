@@ -64,18 +64,14 @@ def packageAtTime(truck, usableTime, package_hashmap):
 
 # This method returns truck mileage at a user given time
 # Time complexity = O(n)
-# Space complexity = O(n)
+# Space complexity = O(1)
 def mileageAtTime(truck, usableTime, package_hashmap):
     # The truck will deliver all packages
-    # Time complexity = O(n)
-    # Space complexity = O(n)
     goEnRoute(truck, package_hashmap)
     timedMiles = 0.0
 
     # If user asks for time after truck has finished delivering all packages, give the total amount of miles used
     # to deliver all packages
-    # Time complexity = O(1)
-    # Space complexity = O(1)
     if truck.currentTime < usableTime:
         timedMiles = truck.mileage
 

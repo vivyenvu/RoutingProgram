@@ -30,6 +30,9 @@ package_hashmap = HashMap()
 csv_hashmap('Package.csv', package_hashmap)
 
 
+# Runs application in CLI
+# Time complexity = O(n^2)
+# Space complexity = O(1)
 class Main:
     # Show user menu options
     # Time complexity = O(1)
@@ -39,91 +42,92 @@ class Main:
     print('2 - Show status of all packages at a given time')
     print('3 - Exit application')
 
-
-while True:
-    try:
-        menuInput = input('Please enter a number option from the menu above. ')
-        isValid = int(menuInput)
-    except ValueError:
-        print('Invalid input. Please enter a valid number. ')
-        continue
-    if isValid != 1 and isValid != 2 and isValid != 3:
-        print('Invalid input. Please enter a valid number. ')
-        continue
-
-    elif isValid == 1:
-        # Trucks deliver all of their packages in this order
-        goEnRoute(truck1, package_hashmap)
-        goEnRoute(truck3, package_hashmap)
-        # After truck1's driver returns to the hub at 9:57:40, he will take truck2 and deliver those packages at 10:00
-        goEnRoute(truck2, package_hashmap)
-
-        # Print status of all packages after they've all been delivered
-        # Time complexity = O(n)
-        print('STATUS OF ALL PACKAGES WHEN DAY ENDS')
-        for i in range(1, 41):
-            package = package_hashmap.lookup(i)
-            id = str(i)
-            address = str(package.address)
-            city = str(package.city)
-            state = str(package.state)
-            zipcode = str(package.zipcode)
-            deadline = str(package.deadline)
-            weight = str(package.weight)
-            status = str(package.status)
-            time = str(package.deliveredTime)
-            print(
-                id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
-
-        # Print individual and total truck mileage
-        print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
-        print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
-        print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
-        print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
-
-        # Print out which truck finished delivering packages last as time when all packages were delivered by
-        endTime = datetime.timedelta(hours=17)
-        if truck1.currentTime > truck2.currentTime and truck1.currentTime > truck3.currentTime:
-            endTime = truck1.currentTime
-        elif truck2.currentTime > truck1.currentTime and truck2.currentTime > truck3.currentTime:
-            endTime = truck2.currentTime
-        elif truck3.currentTime > truck1.currentTime and truck3.currentTime > truck1.currentTime:
-            endTime = truck1.currentTime
-        print('All packages were done being delivered by: ' + str(endTime))
-        break
-
-    elif isValid == 3:
-        print('You are exiting the application. ')
-        exit()
-
-    elif isValid == 2:
+    while True:
         try:
-            # Convert time entered by user in to timedelta so that it can be compared to truck and package timedelta
-            timeInput = input('Please enter the time you would like to check all package status in hh:mm:ss format. ')
-            timeParts = timeInput.split(':')
-            usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]),
-                                            seconds=int(timeParts[2]))
+            menuInput = input('Please enter a number option from the menu above. ')
+            isValid = int(menuInput)
+        except ValueError:
+            print('Invalid input. Please enter a valid number. ')
+            continue
+        if isValid != 1 and isValid != 2 and isValid != 3:
+            print('Invalid input. Please enter a valid number. ')
+            continue
 
-            # Update package information at user given time
-            print('STATUS OF ALL PACKAGES AT ' +str(usableTime))
-            packageAtTime(truck1, usableTime, package_hashmap)
-            packageAtTime(truck2, usableTime, package_hashmap)
-            packageAtTime(truck3, usableTime, package_hashmap)
+        elif isValid == 1:
+            # Trucks deliver all of their packages in this order
+            # Time complexity = O(n^2)
+            # Space complexity = O(1)
+            goEnRoute(truck1, package_hashmap)
+            goEnRoute(truck3, package_hashmap)
+            # After truck1's driver returns to the hub at 9:57:40, he will take truck2 and deliver those packages at 10:00
+            goEnRoute(truck2, package_hashmap)
 
-            # Get truck mileage at user given time
-            mile1 = mileageAtTime(truck1, usableTime, package_hashmap)
-            mile2 = mileageAtTime(truck2, usableTime, package_hashmap)
-            mile3 = mileageAtTime(truck3, usableTime, package_hashmap)
+            # Print status of all packages after they've all been delivered
+            print('STATUS OF ALL PACKAGES WHEN DAY ENDS')
+            for i in range(1, 41):
+                package = package_hashmap.lookup(i)
+                id = str(i)
+                address = str(package.address)
+                city = str(package.city)
+                state = str(package.state)
+                zipcode = str(package.zipcode)
+                deadline = str(package.deadline)
+                weight = str(package.weight)
+                status = str(package.status)
+                time = str(package.deliveredTime)
+                print(
+                    id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
 
             # Print individual and total truck mileage
-            print('Truck 1 mileage: ' + str(round(mile1, 1)))
-            print('Truck 2 mileage: ' + str(round(mile2, 1)))
-            print('Truck 3 mileage: ' + str(round(mile3, 1)))
-            print('Total mileage: ' + str(round(mile1 + mile2 + mile3, 1)))
+            print('Truck 1 mileage: ' + str(round(truck1.mileage, 1)))
+            print('Truck 2 mileage: ' + str(round(truck2.mileage, 1)))
+            print('Truck 3 mileage: ' + str(round(truck3.mileage, 1)))
+            print('Total mileage: ' + str(round(truck1.mileage + truck2.mileage + truck3.mileage, 1)))
+
+            # Print out which truck finished delivering packages last as time when all packages were delivered by
+            endTime = datetime.timedelta(hours=17)
+            if truck1.currentTime > truck2.currentTime and truck1.currentTime > truck3.currentTime:
+                endTime = truck1.currentTime
+            elif truck2.currentTime > truck1.currentTime and truck2.currentTime > truck3.currentTime:
+                endTime = truck2.currentTime
+            elif truck3.currentTime > truck1.currentTime and truck3.currentTime > truck1.currentTime:
+                endTime = truck1.currentTime
+            print('All packages were done being delivered by: ' + str(endTime))
+            break
+
+        elif isValid == 3:
+            print('You are exiting the application. ')
             exit()
-        except ValueError:
-            print('Invalid input. Restart program and try again. ')
-            exit()
-        except IndexError:
-            print('Invalid input. Restart program and try again. ')
-            exit()
+
+        elif isValid == 2:
+            try:
+                # Convert time entered by user in to timedelta so that it can be compared to truck and package timedelta
+                timeInput = input(
+                    'Please enter the time you would like to check all package status in hh:mm:ss format. ')
+                timeParts = timeInput.split(':')
+                usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]),
+                                                seconds=int(timeParts[2]))
+
+                # Update package information at user given time
+                print('STATUS OF ALL PACKAGES AT ' + str(usableTime))
+                packageAtTime(truck1, usableTime, package_hashmap)
+                packageAtTime(truck2, usableTime, package_hashmap)
+                packageAtTime(truck3, usableTime, package_hashmap)
+
+                # Get truck mileage at user given time
+                mile1 = mileageAtTime(truck1, usableTime, package_hashmap)
+                mile2 = mileageAtTime(truck2, usableTime, package_hashmap)
+                mile3 = mileageAtTime(truck3, usableTime, package_hashmap)
+
+                # Print individual and total truck mileage
+                print('Truck 1 mileage: ' + str(round(mile1, 1)))
+                print('Truck 2 mileage: ' + str(round(mile2, 1)))
+                print('Truck 3 mileage: ' + str(round(mile3, 1)))
+                print('Total mileage: ' + str(round(mile1 + mile2 + mile3, 1)))
+                exit()
+            except ValueError:
+                print('Invalid input. Restart program and try again. ')
+                exit()
+            except IndexError:
+                print('Invalid input. Restart program and try again. ')
+                exit()

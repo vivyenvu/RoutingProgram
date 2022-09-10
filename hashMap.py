@@ -1,5 +1,5 @@
 # Time complexity = O(n)
-# Space complexity = O(1)
+# Space complexity = O(n)
 class HashMap:
     # HashMap constructor doesn't take any other arguments
     # Time complexity = O(1)
