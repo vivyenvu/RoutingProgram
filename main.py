@@ -145,14 +145,19 @@ class Main:
                     print('Invalid package id. Restart program and try again. ')
                     exit()
 
-                goEnRoute(truck1, package_hashmap)
-                goEnRoute(truck3, package_hashmap)
-                # After truck1 returns to the hub at 9:57:40, driver will take deliver truck2's packages at 10
-                goEnRoute(truck2, package_hashmap)
+                selectedTruck = None
+                if packageId in truck1.myPackages:
+                    selectedTruck = truck1
+                elif packageId in truck2.myPackages:
+                    selectedTruck = truck2
+                elif packageId in truck3.myPackages:
+                    selectedTruck = truck3
+
+                goEnRoute(selectedTruck, package_hashmap)
 
                 # Update package information at user given time
                 print('STATUS OF PACKAGE #'+str(packageId)+' AT ' + str(usableTime))
-                singlePackageAtTime(packageId, usableTime, package_hashmap)
+                singlePackageAtTime(packageId, usableTime, selectedTruck, package_hashmap)
 
                 exit()
             except ValueError:
