@@ -9,49 +9,65 @@ from distance import distanceBetween
 # Time complexity = O(n^2)
 # Space complexity = O(1)
 def goEnRoute(truck, hashmap):
-    # Updates status of all package in truck to "En route"
+    # Make copy of the list of package numbers on this truck
+    packageNumbers = truck.myPackages
+
+    # Iterate through list of package numbers
     # Time complexity = O(n)
-    packageNumbers = truck.myPackages  # List of package numbers
     for num in packageNumbers:
+        # Look up the package using its id in the hashmap of packages
         package = hashmap.lookup(num)
+        # Update status of all package in truck to "En route"
         package.enRoute()
 
-    # This is the nearest neighbor algorithm where every package associated with the id in packageNumbers
-    # will be compared to find which address is the closest to the current address. Once the closest
-    # package is found, the truck and package will be updated with the amount of time and mileage it took
-    # to deliver to that next package. This is repeated until all packages are delivered
-    # Time complexity = O(n^2)
-    address1 = truck.currentAddress
+    # Set currentDistance to a number that exceeds any possible distance between any two packages based on Address.csv
     currentDistance = 25
+    # Get the number of packages remaining in the truck that need to be delivered by
+    # getting the length of the packageNumbers list.
     packagesRemaining = len(packageNumbers)
+    # Iterate through the remaining packages
     while packagesRemaining > 0:
-        removeThis = packageNumbers[0]
-        # This if-statement is to account for package 9's change in address at 10:20am
+        # Keep track of package to remove
+        removeId = packageNumbers[0]
+
+        # If the truck's current time is after 10:20, update package9's address and zipcode
         if truck.currentTime >= datetime.timedelta(hours=10, minutes=20):
             package9 = hashmap.lookup(9)
             package9.address = '410 S State St'
             package9.zipcode = '84111'
 
+        # Iterate through all the packages remaining in the truck to find the nearest package address
         for num in packageNumbers:
-            addressTemp = hashmap.lookup(num).address
-            tempDistance = distanceBetween(address1, addressTemp)
-            if tempDistance < currentDistance:
-                address2 = addressTemp
+            # Get address of package
+            packageAddress = hashmap.lookup(num).address
+            # Get distance between truckAddress and packageAddress
+            packageDistance = distanceBetween(truck.currentAddress, packageAddress)
+            # Check if packageDistance is shortest so far
+            if packageDistance < currentDistance:
+                # If so, assume this package is next to be delivered
+                nextAddress = packageAddress
                 nextPackage = hashmap.lookup(num)
-                currentDistance = distanceBetween(address1, address2)
-                removeThis = num
+                currentDistance = distanceBetween(truck.currentAddress, nextAddress)
+                removeId = num
 
-        packageNumbers.remove(removeThis)
+        # Remove package with the nearest address from list of packages
+        packageNumbers.remove(removeId)
+        # Add time it took to deliver the nearest package to truck's currentTime
         truck.updateTime(currentDistance)
+        # Add miles it took to deliver the nearest package to the truck's mileage
         truck.addMiles(currentDistance)
-        truck.updateAddress(address2)
+        # Set truck's current address to address of package that was just delivered
+        truck.updateAddress(nextAddress)
+        # Set package's deliveredTime to be the truck's currentTime
         nextPackage.deliveredAt(truck.currentTime)
+        # Set package's status to 'Delivered'
         nextPackage.deliveredStatus()
-        address1 = address2
+        # Subtract 1 from the number of packages remaining
         packagesRemaining -= 1
+        # Reset currentDistant to exceed any possible distance between any two packages based on Address.csv
         currentDistance = 25
 
-    # Add miles and time from the truck's last address back to the hub
+    # Calculate miles and time from truck's last address back to the hub. Add that to truck's information
     truck.updateTime(distanceBetween(truck.currentAddress, '4001 South 700 East'))
     truck.addMiles(distanceBetween(truck.currentAddress, '4001 South 700 East'))
     truck.currentAddress = '4001 South 700 East'
