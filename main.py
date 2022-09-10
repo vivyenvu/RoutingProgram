@@ -3,7 +3,7 @@
 
 # For the entire project:
 # Time complexity = O(n^2)
-# Space complexity = O(1)
+# Space complexity = O(n)
 
 import datetime
 import truck
@@ -53,13 +53,13 @@ class Main:
             print('Invalid input. Please enter a valid number. ')
             continue
 
+        # Time complexity = O(n^2)
+        # Space complexity = O(1)
         elif isValid == 1:
             # Trucks deliver all of their packages in this order
-            # Time complexity = O(n^2)
-            # Space complexity = O(1)
             goEnRoute(truck1, package_hashmap)
             goEnRoute(truck3, package_hashmap)
-            # After truck1's driver returns to the hub at 9:57:40, he will take truck2 and deliver those packages at 10:00
+            # After truck1 returns to the hub at 9:57:40, driver will take truck2 and deliver those packages at 10:00
             goEnRoute(truck2, package_hashmap)
 
             # Print status of all packages after they've all been delivered
@@ -95,10 +95,14 @@ class Main:
             print('All packages were done being delivered by: ' + str(endTime))
             break
 
+        # Time complexity = O(1)
+        # Space complexity = O(1)
         elif isValid == 3:
             print('You are exiting the application. ')
             exit()
 
+        # Time complexity = O(n^2)
+        # Space complexity = O(1) DOUBLE CHECK THIS AFTER I ENTER OPTION TO SEARCH SINGLE PACKAGE
         elif isValid == 2:
             try:
                 # Convert time entered by user in to timedelta so that it can be compared to truck and package timedelta

@@ -4,7 +4,7 @@ from deliveryRoute import goEnRoute
 
 
 # This method prints out package information at a user given time
-# Time complexity = O(n)
+# Time complexity = O(n^2)
 # Space complexity = O(1)
 def packageAtTime(truck, usableTime, package_hashmap):
     # Fill list packageNumbers with the id of packages in this truck

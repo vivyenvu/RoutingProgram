@@ -27,7 +27,6 @@ def goEnRoute(truck, hashmap):
     while packagesRemaining > 0:
         removeThis = packageNumbers[0]
         # This if-statement is to account for package 9's change in address at 10:20am
-        # Time complexity = O(1)
         if truck.currentTime >= datetime.timedelta(hours=10, minutes=20):
             package9 = hashmap.lookup(9)
             package9.address = '410 S State St'

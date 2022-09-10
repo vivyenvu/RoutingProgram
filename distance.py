@@ -8,10 +8,11 @@ filename = 'Distance.csv'
 
 # Overall:
 # Time complexity = O(n)
-# Space complexity = O(1)
+# Space complexity = O(n)
 
 # Populate list with distances in between two addresses
 # Time complexity = O(n)
+# Space complexity = O(n)
 with open(filename, encoding='utf-8-sig') as csvf:
     distanceCSV = csv.reader(csvf)
     for entry in distanceCSV:
@@ -19,6 +20,7 @@ with open(filename, encoding='utf-8-sig') as csvf:
 
 # Create a dictionary with key: address index, and value: distances between that index and other address indexes
 # Time complexity = O(n)
+# Space complexity = O(n)
 for x in range(0, len(distancesBtwn)):
     distanceDict[x] = distancesBtwn[x]
 
