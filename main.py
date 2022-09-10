@@ -97,7 +97,7 @@ class Main:
             break
 
         # Time complexity = O(n^2)
-        # Space complexity = O(1) DOUBLE CHECK THIS AFTER I ENTER OPTION TO SEARCH SINGLE PACKAGE DSFGI;LDFHGLKHAD;LGKHDFA;HG;
+        # Space complexity = O(1)
         elif isValid == 2:
             try:
                 # Convert time entered by user in to timedelta so that it can be compared to truck and package timedelta
@@ -131,6 +131,8 @@ class Main:
                 print('Invalid input. Restart program and try again. ')
                 exit()
 
+        # Time complexity = O(n^2)
+        # Space complexity = O(1)
         elif isValid == 3:
             try:
                 # Convert time entered by user in to timedelta so that it can be compared to truck and package timedelta
@@ -140,11 +142,13 @@ class Main:
                 usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]),
                                                 seconds=int(timeParts[2]))
 
+                # Validate id entered falls within 1-40
                 packageId = int(input('Please enter the id of the package you would like to check '))
                 if packageId < 1 or packageId > 40:
                     print('Invalid package id. Restart program and try again. ')
                     exit()
 
+                # Figure out which truck the package is on and set that truck to delivery all packages
                 selectedTruck = None
                 if packageId in truck1.myPackages:
                     selectedTruck = truck1
@@ -152,10 +156,9 @@ class Main:
                     selectedTruck = truck2
                 elif packageId in truck3.myPackages:
                     selectedTruck = truck3
-
                 goEnRoute(selectedTruck, package_hashmap)
 
-                # Update package information at user given time
+                # Print out status of that single package at specified time
                 print('STATUS OF PACKAGE #'+str(packageId)+' AT ' + str(usableTime))
                 singlePackageAtTime(packageId, usableTime, selectedTruck, package_hashmap)
 

@@ -3,7 +3,7 @@ import datetime
 from deliveryRoute import goEnRoute
 
 
-# This method prints out package information at a user given time
+# This method prints out all packages' information at a user given time
 # Time complexity = O(n^2)
 # Space complexity = O(1)
 def allPackagesAtTime(truck, usableTime, package_hashmap):
@@ -62,6 +62,9 @@ def allPackagesAtTime(truck, usableTime, package_hashmap):
                 id + ' | ' + address + ' | ' + city + ' | ' + state + ' | ' + zipcode + ' | ' + deadline + ' | ' + weight + ' | ' + status + ' at ' + time)
 
 
+# This method prints out information of a single package at a user given time
+# Time complexity = O(1)
+# Space complexity = O(1)
 def singlePackageAtTime(packageId, usableTime, truck, package_hashmap):
     depart = truck.departTime
     package = package_hashmap.lookup(packageId)
