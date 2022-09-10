@@ -140,7 +140,10 @@ class Main:
                 usableTime = datetime.timedelta(hours=int(timeParts[0]), minutes=int(timeParts[1]),
                                                 seconds=int(timeParts[2]))
 
-                timeInput = input('Please enter the id of the package you would like to check ')
+                packageId = int(input('Please enter the id of the package you would like to check '))
+                if packageId < 1 or packageId > 40:
+                    print('Invalid package id. Restart program and try again. ')
+                    exit()
 
                 goEnRoute(truck1, package_hashmap)
                 goEnRoute(truck3, package_hashmap)
@@ -148,10 +151,8 @@ class Main:
                 goEnRoute(truck2, package_hashmap)
 
                 # Update package information at user given time
-                print('STATUS OF ALL PACKAGES AT ' + str(usableTime))
-                singlePackageAtTime(truck1, usableTime, package_hashmap)
-                singlePackageAtTime(truck2, usableTime, package_hashmap)
-                singlePackageAtTime(truck3, usableTime, package_hashmap)
+                print('STATUS OF PACKAGE #'+str(packageId)+' AT ' + str(usableTime))
+                singlePackageAtTime(packageId, usableTime, package_hashmap)
 
                 exit()
             except ValueError:
